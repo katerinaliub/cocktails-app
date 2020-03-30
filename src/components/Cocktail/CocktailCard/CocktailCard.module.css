@@ -1,0 +1,19 @@
+.CocktailCard {
+    border-width: 0;
+}
+
+.CardBody {
+    padding: .5rem 0 0;
+}
+
+
+.CardTitle {
+    color: var(--dark);
+    transition: all .2s;
+}
+
+.CardTitle:hover,
+.CardTitle:focus {
+    text-decoration: none;
+    color: var(--success);
+}

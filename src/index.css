@@ -1,13 +1,45 @@
-body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+@font-face {
+  font-family: 'Signika';
+  font-style: normal;
+  font-weight: 400;
+  src: url('./assets/fonts/Signika-Regular/Signika-Regular.eot'); /* IE9 Compat Modes */
+  src: local('Signika'), local('Signika'),
+  url('./assets/fonts/Signika-Regular/Signika-Regular.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+  url('./assets/fonts/Signika-Regular/Signika-Regular.woff2') format('woff2'), /* Super Modern Browsers */
+  url('./assets/fonts/Signika-Regular/Signika-Regular.woff') format('woff'), /* Modern Browsers */
+  url('./assets/fonts/Signika-Regular/Signika-Regular.ttf') format('truetype'), /* Safari, Android, iOS */
+  url('./assets/fonts/Signika-Regular/Signika-Regular.svg#OpenSans') format('svg'); /* Legacy iOS */
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+@font-face {
+  font-family: 'Signika';
+  font-style: normal;
+  font-weight: bold;
+  src: url('./assets/fonts/Signika-Bold/Signika-Bold.eot'); /* IE9 Compat Modes */
+  src: local('Signika'), local('Signika'),
+  url('./assets/fonts/Signika-Bold/Signika-Bold.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+  url('./assets/fonts/Signika-Bold/Signika-Bold.woff2') format('woff2'), /* Super Modern Browsers */
+  url('./assets/fonts/Signika-Bold/Signika-Bold.woff') format('woff'), /* Modern Browsers */
+  url('./assets/fonts/Signika-Bold/Signika-Bold.ttf') format('truetype'), /* Safari, Android, iOS */
+  url('./assets/fonts/Signika-Bold/Signika-Bold.svg#OpenSans') format('svg'); /* Legacy iOS */
+}
+
+@font-face {
+  font-family: 'Signika';
+  font-style: normal;
+  font-weight: 300;
+  src: url('./assets/fonts/Signika-Light/Signika-Light.eot'); /* IE9 Compat Modes */
+  src: local('Signika'), local('Signika'),
+  url('./assets/fonts/Signika-Light/Signika-Light.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+  url('./assets/fonts/Signika-Light/Signika-Light.woff2') format('woff2'), /* Super Modern Browsers */
+  url('./assets/fonts/Signika-Light/Signika-Light.woff') format('woff'), /* Modern Browsers */
+  url('./assets/fonts/Signika-Light/Signika-Light.ttf') format('truetype'), /* Safari, Android, iOS */
+  url('./assets/fonts/Signika-Light/Signika-Light.svg#OpenSans') format('svg'); /* Legacy iOS */
+}
+
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: "Signika", sans-serif !important;
 }

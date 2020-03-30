@@ -1,0 +1,29 @@
+.Link {
+    position: relative;
+    display: inline-block;
+    overflow: hidden;
+}
+
+.Image {
+    transform: scale(1.1);
+    transition: all .5s;
+}
+
+.Badge {
+    position: absolute;
+    z-index: 1;
+    right: .5rem;
+    top: .5rem;
+    transform: translate(0, calc(-100% - .5rem));
+    transition: all .5s;
+    opacity: 0;
+}
+
+.Link:hover .Image {
+    transform: scale(1);
+}
+
+.Link:hover .Badge {
+    opacity: 1;
+    transform: translate(0, 0);
+}
