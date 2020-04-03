@@ -1,8 +1,12 @@
 import React from "react";
-import axios from 'axios';
 
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
+import Spinner from "react-bootstrap/Spinner";
+
+import axios from '../../../axios';
+
+import withErrorHandler from "../../../hoc/withErrorHandler/withErrorHandler";
 import CocktailCard from '../CocktailCard/CocktailCard';
 
 import classes from './PopularCocktails.module.css';
@@ -10,21 +14,32 @@ import classes from './PopularCocktails.module.css';
 class PopularCocktails extends React.Component {
 
     state = {
-        cocktails: []
+        cocktails: [],
+        loading: false
     };
 
     componentDidMount() {
-        axios.get('https://www.thecocktaildb.com/api/json/v2/9973533/randomselection.php\n')
-            .then((response) => {
-                this.setState({cocktails: response.data.drinks});
-                console.log(response);
-            });
+        this.loadCocktails();
     }
 
+    loadCocktails = () => {
+        this.setState({loading: true});
+        axios.get('/randomselection.php')
+            .then((response) => {
+                this.setState({
+                    cocktails: response.data.drinks,
+                    loading: false
+                });
+            })
+            .catch(error => {
+                this.setState({
+                    loading: false
+                });
+            });
+    };
+
     render() {
-
-        const list = this.state.cocktails.map(cocktail => {
-
+        let list = this.state.cocktails.map(cocktail => {
             let ingredients = [];
             const propName = 'strIngredient';
 
@@ -47,6 +62,14 @@ class PopularCocktails extends React.Component {
             )
         });
 
+        if (this.state.loading) {
+            list = (
+                <Spinner animation="border" role="status" className="mx-auto">
+                    <span className="sr-only">Loading...</span>
+                </Spinner>
+            );
+        }
+
         return (
             <React.Fragment>
                 <h1 className="text-center mb-5">Most Popular Cocktails</h1>
@@ -56,6 +79,6 @@ class PopularCocktails extends React.Component {
             </React.Fragment>
         );
     }
-};
+}
 
-export default PopularCocktails;
+export default withErrorHandler(PopularCocktails, axios);

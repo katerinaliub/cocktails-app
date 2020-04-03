@@ -2,7 +2,7 @@ import React from "react";
 
 import Container from 'react-bootstrap/Container';
 
-import PopularCocktails from '../../components/Cocktail/PopulatCocktails/PopulatCocktails';
+import PopularCocktails from '../../components/Cocktail/PopularCocktails/PopularCocktails';
 import IngredientsCarousel from '../../components/IngredientsCarousel/IngredientsCarousel';
 
 class Home extends React.Component{

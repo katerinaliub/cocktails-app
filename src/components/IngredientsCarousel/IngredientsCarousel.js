@@ -1,23 +1,40 @@
 import React from 'react';
-import axios from 'axios';
 
 import Container from "react-bootstrap/Container";
+import Spinner from "react-bootstrap/Spinner";
 import Slider from "react-slick";
 
+import axios from '../../axios';
+
+import withErrorHandler from "../../hoc/withErrorHandler/withErrorHandler";
 import CardImageWithBadge from '../Utilities/CardImageWithBadge/CardImageWithBadge';
 
-class ingredientsCarousel extends React.Component {
+class IngredientsCarousel extends React.Component {
 
     state = {
-        ingredients: []
-    }
+        ingredients: [],
+        loading: false
+    };
 
     componentDidMount() {
-        axios.get('https://www.thecocktaildb.com/api/json/v2/9973533/list.php?i=list')
-            .then((response) => {
-                this.setState({ingredients: response.data.drinks});
-            });
+        this.loadIngredients();
     }
+
+    loadIngredients = () => {
+        this.setState({loading: true});
+        axios.get('/list.php?i=list')
+            .then((response) => {
+                this.setState({
+                    ingredients: response.data.drinks,
+                    loading: false
+                });
+            })
+            .catch(error => {
+                this.setState({
+                    loading: false
+                });
+            });
+    };
 
     render() {
         const settings = {
@@ -32,9 +49,6 @@ class ingredientsCarousel extends React.Component {
             focusOnSelect: true
         };
 
-
-
-
         //show only 20 first ingredients
         const list = this.state.ingredients.slice(0, 20).map((ingredient, i) => (
             <div key={ingredient.strIngredient1 + i}>
@@ -47,15 +61,27 @@ class ingredientsCarousel extends React.Component {
             </div>
         ));
 
+        let content = (
+            <Slider {...settings}>
+                {list}
+            </Slider>
+        );
+
+        if (this.state.loading) {
+            content = (
+                <Spinner animation="border" role="status" className="d-block mx-auto">
+                    <span className="sr-only">Loading...</span>
+                </Spinner>
+            );
+        }
+
         return (
             <Container fluid>
                 <h1 className="text-center mb-5">Ingredients</h1>
-                <Slider {...settings}>
-                    {list}
-                </Slider>
+                {content}
             </Container>
         );
     }
-};
+}
 
-export default ingredientsCarousel;
+export default withErrorHandler(IngredientsCarousel, axios);
